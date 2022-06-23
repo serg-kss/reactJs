@@ -1,0 +1,8 @@
+.Users_photo{
+   height: auto;
+   width: 50px;
+   border-radius: 50%;
+}
+.selectedPage{
+   font-weight: bold;
+}
