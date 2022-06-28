@@ -1,16 +1,12 @@
 import { connect } from 'react-redux';
 import Users from './Users';
-import {getUsersAmount,getUsersByPage,setCurrentPageAC} from '../redux/users-reducer';
+import {getUsersAmount,getUsersByPage} from '../redux/users-reducer';
 
 
 const UsersContainer = (props) => {
 
   props.getUsersAmount();
-  console.log(props.currentPage)
-  props.getUsersByPage(props.currentPage,props.pageSize)
-
- 
-
+  
   return(
   <Users {...props}
     users ={props.users}
@@ -32,5 +28,4 @@ let mapStateToProps = (state)=>({
 
 export default connect(mapStateToProps,{getUsersAmount,
                                         getUsersByPage,
-                                        setCurrentPageAC,
                                         }) (UsersContainer);

@@ -110,9 +110,9 @@ export const unfollowAC = (userID) => {
    }
  }
 
- export const getUsersByPage = (currentPage, pageSize) =>{
+ export const getUsersByPage = (currentPage) =>{
    return (dispatch) =>{
-      getUsers(currentPage, pageSize)
+      getUsers(currentPage)
        .then(response =>{
         dispatch(setUsersAC(response))
      });

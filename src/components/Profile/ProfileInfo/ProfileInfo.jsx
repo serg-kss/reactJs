@@ -1,6 +1,7 @@
 import React from 'react';
 import c from './ProfileInfo.module.css';
 import ProfileStatusHooks from './ProfileStatusHooks';
+import avatar from '../../../assets/images/anonymous.jpg'
 
 
 const ProfileInfo = (props)=>{
@@ -31,8 +32,7 @@ const relationship = 'married';
       <p>{props.profile.hobby}</p>
     </div>
     <div className="col-md-5 order-md-1"> 
-        <img src={props.profile.photo} width={300}/>  
-        
+        <img src={props.profile.photo == null? props.profile.photo:avatar} width={300}/>                 
     </div>
     <hr />
   </div>       

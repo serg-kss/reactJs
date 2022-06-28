@@ -25,7 +25,7 @@ function App() {
         
         <div className='container'>
            <Route path='/profile' component= {ProfileContainer} />                          
-           <Route path={"/profiles/:userId"}>
+           <Route path={'/profiles/:userId'}>
             <ProfileContainerHooks />
            </Route>
            <Route path='/dialogs' component= {DialogsContainer} />

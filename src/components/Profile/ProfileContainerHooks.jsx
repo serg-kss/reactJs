@@ -6,7 +6,6 @@ import {getProfileStatus,updateProfileStatus} from '../redux/profile-reducer';
 import { useParams} from "react-router-dom";
 
 
-
 const ProfileContainerHooks = (props)=>{
 
    let  { userId } = useParams();

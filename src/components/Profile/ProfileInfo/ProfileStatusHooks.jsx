@@ -36,7 +36,7 @@ const ProfileStatusHooks = (props) => {
    );
 }
 
-export default ProfileStatusHooks
+export default ProfileStatusHooks;
 
 
 

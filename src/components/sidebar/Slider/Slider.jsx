@@ -1,38 +1,45 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import SimpleImageSlider from "react-simple-image-slider";
+import {useState, useEffect, useRef} from "react";
+
+
+
+
+
 
 
 const Slider = (props)=>{
+
+  const [img_width, img_wdthChange] = useState(890);
+  const img_height = 360;
+  const ref = useRef();
+
+  useEffect(() => {
+    let width = ref.current.offsetWidth;
+    img_wdthChange(width);        
+  }, []);
+
+ 
+  const images = [
+    { url: "https://wowslider.com/sliders/demo-18/data1/images/shanghai.jpg" },
+    { url: "http://wowslider.com/sliders/demo-18/data1/images/new_york.jpg" },
+  ];
+
    return(
-      
-<div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="true">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <div className='row' id='container'>
+      <div className='col-12 d-flex justify-content-center mt-1' ref={ref}>
+        <div >
+          <SimpleImageSlider
+            width={img_width}
+            height={img_width < 890 ? Math.round(img_height * ((img_width * 100/890)/100)) : img_height}
+            images={images}
+            showBullets={true}
+            showNavs={true}
+          />
+        </div>        
+      </div>    
   </div>
-  <div className="carousel-inner">
-    <div className="carousel-item active">
-      <img src='https://www.wonderplugin.com/wp-content/uploads/2019/05/tutorial-computer-900x288.jpg' className="d-block w-100" alt="..."/>
-    </div>
-    <div className="carousel-item">
-      <img src="https://www.wonderplugin.com/wp-content/uploads/2019/05/tutorial-computer-900x288.jpg" className="d-block w-100" alt="..."/>
-    </div>
-    <div className="carousel-item">
-      <img src="https://www.wonderplugin.com/wp-content/uploads/2019/05/tutorial-computer-900x288.jpg" className="d-block w-100" alt="..."/>
-    </div>
-  </div>
-  <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span className="visually-hidden">Previous</span>
-  </button>
-  <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-    <span className="visually-hidden">Next</span>
-  </button>
-</div>
-
-
 
    );
 }

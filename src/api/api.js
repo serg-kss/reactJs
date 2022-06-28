@@ -1,7 +1,7 @@
 import * as axios from 'axios';
 
 
-export const getUsers = (currentPage=1,pageSize)=>{
+export const getUsers = (currentPage=1,pageSize=3)=>{
    return axios.get('https://react-back-end-djangorest.herokuapp.com/api/v1/react/users?page='+currentPage+'&count='+pageSize)
    .then(response =>{
       return response.data

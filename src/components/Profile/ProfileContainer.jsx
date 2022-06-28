@@ -21,7 +21,7 @@ class ProfileContainer extends React.Component{
       updateProfileStatus ={this.props.updateProfileStatus}/>     
     </div>
    );
-  };  
+  }; 
 };
 
 let mapStateToProps = (state)=>({ 

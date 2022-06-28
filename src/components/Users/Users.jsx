@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './Users.module.css'
 import { NavLink } from 'react-router-dom';
 import pic from '../../assets/images/avatar.png'
@@ -7,19 +7,25 @@ import pic from '../../assets/images/avatar.png'
 
 const Users = (props)=>{
 
-   let pagesCount=Math.ceil(props.totalUsersCount/props.pageSize);
-   let pages = [];
-   for(let i=1;i<=pagesCount;i++){
-      pages.push(i);
-   }
-    
+   let [currentPage, setCurrentPage]= useState(props.currentPage);
+
+   useEffect(()=>{
+      props.getUsersByPage(currentPage) 
+    });
+
+
+    let pagesCount=Math.ceil(props.totalUsersCount/props.pageSize);
+    let pages = [];
+    for(let i=1;i<=pagesCount;i++){
+       pages.push(i);
+    }
 
 return(
    <div>
       <div>
-         {pages.map(p => {return <span className={props.currentPage===p && styles.selectedPage} 
+         {pages.map(p => {return <span className={currentPage===p && styles.selectedPage} 
          onClick={()=>{             
-            props.setCurrentPageAC(p);                               
+            setCurrentPage(p);                                       
          }}>{p}</span>})
          }
       </div>     

@@ -5,17 +5,18 @@ import { NavLink } from 'react-router-dom';
 const Footer = (props)=>{
 
    return(
-      <div className='container'>
+    <div className='container mt-5'>
     
-      <p>Blog template built for <NavLink to="">Bootstrap</NavLink> by <NavLink to="">@mdo</NavLink>.</p>
+      <p>Blog by 
+        <NavLink to="/profile">@SK</NavLink>.
+      </p>
       <p>
-        <NavLink to="#">Back to top</NavLink>
+        <NavLink to="/">Back to main page</NavLink>
       </p>
    
     </div>
    );
 }
-
 
 
 export default Footer
