@@ -1,8 +1,12 @@
-import {getUserProfile, getUserStatus, updateUserStatus} from '../../api/api'
+import {getUserProfile, 
+        getUserStatus, 
+        updateUserStatus, 
+        updateUserProfile} from '../../api/api'
 
 const ADD_POST = 'ADD_POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_USER_PROFILE_STATUS = 'SET_USER_PROFILE_STATUS';
+const EDIT_MODE = 'EDIT_MODE';
 
 
 let initialState= {
@@ -12,6 +16,7 @@ let initialState= {
    ],
    profile: {},
    status: 'status here',
+   editMode: false,
 };
 
 const profileReducer = (state=initialState, action) => {
@@ -22,18 +27,22 @@ const profileReducer = (state=initialState, action) => {
          message: action.newPost, 
          likesCount: '0'
        };
-       let stateCopy ={...state};
+       let stateCopy = {...state};
        stateCopy.posts = [...state.posts];
        stateCopy.posts.push(newPost);
        stateCopy.newPostText ='';
        return stateCopy;
     }else if (action.type === SET_USER_PROFILE){ 
-      let stateCopy ={...state};
+      let stateCopy = {...state};
       stateCopy.profile = action.profileAC;
       return stateCopy;
     }else if (action.type === SET_USER_PROFILE_STATUS){ 
-      let stateCopy ={...state};
+      let stateCopy = {...state};
       stateCopy.status = action.profile_statusAC;
+      return stateCopy;
+    }else if (action.type === EDIT_MODE){ 
+      let stateCopy = {...state};
+      stateCopy.editMode = action.editMode;
       return stateCopy;
     }
     return state;
@@ -45,6 +54,13 @@ export const addPostActionCreator = (newPost) => {
      newPost:newPost
    }
  };
+
+ export const switchEditModeAC = (switching) => {
+  return {
+    type:EDIT_MODE,
+    editMode:switching
+  }
+};
  
 export const setUserProfileAC = (profileFromAxios) => {
    return {
@@ -60,33 +76,50 @@ export const setUserProfileAC = (profileFromAxios) => {
 };
 
 
-export const getProfile = (userId) => {
+/*export const getProfile = (userId) => {
   return (dispatch)=>{
     getUserProfile(userId)
     .then(response =>{
       dispatch(setUserProfileAC(response))
     });
   }
+}*/
+
+export const getProfile = (userId) => async (dispatch)=>{
+  try{ 
+    let response = await getUserProfile(userId)
+      dispatch(setUserProfileAC(response)) 
+  } catch(error){
+    console.error(error)
+  } 
 }
 
-export const getProfileStatus = (userID) =>{
-  return (dispatch) =>{
-    getUserStatus(userID)
-    .then(response =>{
-      dispatch(setUserProfileStatusAC(response))
-    });
+export const getProfileStatus = (userID) => async (dispatch)=>{
+  try{
+      let response = await getUserStatus(userID)    
+      dispatch(setUserProfileStatusAC(response)) 
+  } catch(error){
+    console.error(error)
+  }
+
+}
+
+export const updateProfileStatus = (newStatus, userID)  => async (dispatch)=>{
+  try{
+  let response = await updateUserStatus(newStatus, userID)
+    dispatch(setUserProfileStatusAC(response))
+  } catch(error){
+    console.error(error)
   }
 }
 
-export const updateProfileStatus = (newStatus, userID) =>{
-  return (dispatch) =>{
-    updateUserStatus(newStatus, userID)
-    .then(response =>{
-      dispatch(setUserProfileStatusAC(response))
-    })    
-    
+export const updateProfileInfo = (updateProfileData, userID)  => async (dispatch)=>{
+  try{
+  let response = await updateUserProfile(updateProfileData, userID)
+    dispatch(setUserProfileAC(response))
+  } catch (error){
+    console.error(error)
   }
 }
-
 
 export default profileReducer;

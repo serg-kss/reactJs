@@ -15,7 +15,7 @@ return(
         <NavLink className="text-dark" to="/">Some Blog</NavLink>
       </div>
       <div className="col-4 d-flex justify-content-end align-items-center">
-        {props.isAuth?props.login:<NavLink className="btn btn-sm btn-outline-secondary" to={'/login'}>Login</NavLink>}
+        {props.isAuth ? props.login : <NavLink className="btn btn-sm btn-outline-secondary" to={'/login'}>Login</NavLink>}
       </div>
     </div>
 </div>      

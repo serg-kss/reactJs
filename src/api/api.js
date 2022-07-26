@@ -37,5 +37,23 @@ export const updateUserStatus = (new_status, userId=1) => {
    });
 }
 
+export const updateUserProfile = (new_profile, userId=1) => {
+   return axios.put('https://react-back-end-djangorest.herokuapp.com/api/v1/learning/update/profile/?id='+userId, {
+      id: new_profile.id,
+      name: new_profile.name,
+      surname: new_profile.surname,
+      birth_data: new_profile.birth_data,
+      email: new_profile.email,
+      status: new_profile.status,
+      city: new_profile.city,
+      job: new_profile.job,
+      sex: new_profile.sex,
+      relationship: new_profile.relationship,
+      hobby: new_profile.hobby})
+   .then(response =>{
+      return response.data
+   });
+}
+
 
 

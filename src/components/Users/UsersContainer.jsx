@@ -9,8 +9,9 @@ const UsersContainer = (props) => {
   
   return(
   <Users {...props}
-    users ={props.users}
+    users = {props.users}
     pageSize = {props.pageSize}
+    portionSize = {props.portionSize}
     totalUsersCount = {props.totalUsersCount}
     currentPage = {props.currentPage}
   />
@@ -21,6 +22,7 @@ const UsersContainer = (props) => {
 let mapStateToProps = (state)=>({ 
   users:state.usersPage.users,
   pageSize:state.usersPage.pageSize,
+  portionSize:state.usersPage.portionSize,
   totalUsersCount:state.usersPage.totalUsersCount,
   currentPage:state.usersPage.currentPage,
 });

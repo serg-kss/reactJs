@@ -11,6 +11,7 @@ const IS_FECHING = 'IS_FECHING';
 let initialState= {
    users: [],
    pageSize: 3,
+   portionSize: 2,
    totalUsersCount: 0,
    currentPage: 1,
    isFeching: false,
@@ -101,21 +102,21 @@ export const unfollowAC = (userID) => {
    }
  };
 
- export const getUsersAmount = () =>{
-   return (dispatch) =>{
-      getAmountUsers()
-       .then(response =>{
-        dispatch(setTotalUsersCountAC(response))
-     });
+ export const getUsersAmount = () => async (dispatch) => { 
+   try{ 
+       let response = await getAmountUsers()
+       dispatch(setTotalUsersCountAC(response))  
+   } catch (error){
+      console.error(error)
    }
  }
 
- export const getUsersByPage = (currentPage) =>{
-   return (dispatch) =>{
-      getUsers(currentPage)
-       .then(response =>{
+ export const getUsersByPage = (currentPage) => async (dispatch) => { 
+  try{
+  let response = await getUsers(currentPage)    
         dispatch(setUsersAC(response))
-     });
+   } catch (error){
+      console.error(error)
    }
  }
 

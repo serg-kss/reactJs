@@ -1,12 +1,6 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import SimpleImageSlider from "react-simple-image-slider";
 import {useState, useEffect, useRef} from "react";
-
-
-
-
-
 
 
 const Slider = (props)=>{
@@ -40,7 +34,6 @@ const Slider = (props)=>{
         </div>        
       </div>    
   </div>
-
    );
 }
 

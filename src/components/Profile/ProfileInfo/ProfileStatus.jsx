@@ -4,9 +4,6 @@ import userPhoto from '../../../assets/images/avatar.png';
 
 
 class ProfileStatus extends React.Component {
-
-  
-
 //local state
 
 state = {
